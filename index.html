@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ssd</title>
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+
+
+<div id= "wrapper">
+
+<div class="introduction">
+<br />
+<br />
+This web presents a demo about predicting the game churn rate of each group under different gameplay parameters in the offline manner. Here the gameplay is extraced from a real world game. There are three stages in this gameplay. At the first two stages agents cooperate or competitive with others to pick up a key at maximum and carry it until the end of this stage.
+Agents carrying a key at the end of this stage have the right to enter the next stage. Agent carrying a key will be marked to notify others. The agents who enter the third stage can pick up lots rewawrds for their success. <br>
+
+A game designer can select parameters of the gameplay, then a video of the game under these parameters is shown and the policy used here is trained by RL which is time-consuming.
+So we just put the video here to avoid longtime waiting. A table about the keep rate of each group under different gameplay parameters is given below.
+<br />
+<br />
+</div>
+
+<div class="parameters">
+    <div class="submitButton">
+        Parameters of gameplay : 
+        <br> the number of keys in the (first, second) layer
+        <br> 
+        <select id="group" value="10_5">
+            <option value="10_5">10,5</option>
+            <option value="20_10">20,10</option>
+            <option value="30_15">30,15</option>
+            <option value="50_25">50,25</option>
+            <option value="80_40">80,40</option>
+            <option value="100_50">100,50</option>
+            <option value="200_100">200,100</option>
+        </select>
+        <input type="submit" name="submitButton" value="Submit">
+    </div>
+</div>
+
+<div class="videos">
+    <div class="keys">Keys</div>
+    <div class="attack">attack</div>
+    <div class="br">Agent1-Agent100</div>
+    <!-- <video width="320" height="240" controls autoplay>
+        <source src="" type="video/mp4">
+    </video> -->
+    <!-- <video width="320" height="240" src="https://user-images.githubusercontent.com/89912591/131674280-8bcaa6db-0e45-42dc-bb36-c6e30aac7572.mp4" controls="controls" style="max-width: 730px;"></video> -->
+    
+    <iframe width="320" height="240" src="https://www.youtube.com/embed/xihCEzppOkE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+
+<script type="text/javascript">
+    window.onload=function(){   
+        String.prototype.format = function(placeholders) {
+            var s = this;
+            for(var propertyName in placeholders) {
+                var re = new RegExp('{' + propertyName + '}', 'gm');
+                s = s.replace(re, placeholders[propertyName]);
+            }    
+            return s;
+        };
+        var projection = {
+            "10_5" : "https://www.youtube.com/embed/xihCEzppOkE",
+            "20_10" : "https://www.youtube.com/embed/SrI4RTIKQsc",
+            "30_15" : "https://www.youtube.com/embed/bvPvma4ABIA",
+            "50_25" : "https://www.youtube.com/embed/NmY1c4USwiQ",
+            "80_40" : "https://www.youtube.com/embed/NyxViVi7r6o",
+            "100_50" : "https://www.youtube.com/embed/Zttax5LawI4",
+            "200_100" : "https://www.youtube.com/embed/sR2lixZES4Q"
+        };
+
+        var selectedParam=document.getElementsByTagName("select")[0];
+        var submit=document.getElementsByTagName("input")[0];
+        var video=document.getElementsByTagName("iframe")[0];
+        submit.onclick=function(){
+            var str = selectedParam.value.split("_");
+            var key_str = ('{first}_{second}').format({first:str[0], second:str[1]});
+            var elem = document.getElementsByTagName('tr');
+            // submit.value = ;
+            video.src= projection[key_str];
+
+            for(let i = 0; i < elem.length; i++){
+                if(elem[i].bgColor == "yellow")
+                    elem[i].bgColor = "aqua";
+            }
+            for(let i = 0; i < elem.length; i++){
+                if(elem[i].id == str[0])
+                    elem[i].bgColor = "yellow";
+            }
+        }
+    }
+</script>
+
+
+
+<div class="tables">
+    <style type="text/css">
+        .tg  {border-collapse:collapse;border-spacing:0;}
+        .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg .tg-0lax{text-align:center;vertical-align:middle}
+    </style>
+
+    <table class="tg">
+    <thead>
+        <tr>
+        <th class="tg-0lax">resources</th>
+        <th class="tg-0lax">Group1</th>
+        <th class="tg-0lax">Group2</th>
+        <th class="tg-0lax">Group3</th>
+        <th class="tg-0lax">Group4</th>
+        <th class="tg-0lax">Group5</th>
+        <th class="tg-0lax">Group6</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id=200>
+        <td class="tg-0lax">(200, 100)</td>
+        <td class="tg-0lax">0.212</td>
+        <td class="tg-0lax">0.209</td>
+        <td class="tg-0lax">0.033</td>
+        <td class="tg-0lax">0.193</td>
+        <td class="tg-0lax">0.267</td>
+        <td class="tg-0lax">0.087</td>
+        </tr>
+        <tr id=100>
+        <td class="tg-0lax">(100, 50)</td>
+        <td class="tg-0lax">0.106</td>
+        <td class="tg-0lax">0.168</td>
+        <td class="tg-0lax">0.114</td>
+        <td class="tg-0lax">0.149</td>
+        <td class="tg-0lax">0.232</td>
+        <td class="tg-0lax">0.231</td>
+        </tr>
+        <tr id=80>
+        <td class="tg-0lax">(80, 40)</td>
+        <td class="tg-0lax">0.139</td>
+        <td class="tg-0lax">0.136</td>
+        <td class="tg-0lax">0.157</td>
+        <td class="tg-0lax">0.167</td>
+        <td class="tg-0lax">0.192</td>
+        <td class="tg-0lax">0.210</td>
+        </tr>
+        <tr id=50>
+        <td class="tg-0lax">(50, 25)</td>
+        <td class="tg-0lax">0.107</td>
+        <td class="tg-0lax">0.157</td>
+        <td class="tg-0lax">0.194</td>
+        <td class="tg-0lax">0.099</td>
+        <td class="tg-0lax">0.264</td>
+        <td class="tg-0lax">0.179</td>
+        </tr>
+        <tr id=30>
+        <td class="tg-0lax">(30, 15)</td>
+        <td class="tg-0lax">0.140</td>
+        <td class="tg-0lax">0.303</td>
+        <td class="tg-0lax">0.135</td>
+        <td class="tg-0lax">0.098</td>
+        <td class="tg-0lax">0.135</td>
+        <td class="tg-0lax">0.189</td>
+        </tr>
+        <tr id=20>
+        <td class="tg-0lax">(20, 10)</td>
+        <td class="tg-0lax">0.136</td>
+        <td class="tg-0lax">0.283</td>
+        <td class="tg-0lax">0.222</td>
+        <td class="tg-0lax">0.137</td>
+        <td class="tg-0lax">0.103</td>
+        <td class="tg-0lax">0.120</td>
+        </tr>
+        <tr id=10>
+        <td class="tg-0lax">(10, 5)</td>
+        <td class="tg-0lax">0.180</td>
+        <td class="tg-0lax">0.190</td>
+        <td class="tg-0lax">0.000</td>
+        <td class="tg-0lax">0.070</td>
+        <td class="tg-0lax">0.070</td>
+        <td class="tg-0lax">0.489</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+</div>
+
+<!-- 
+(200, 100)	0.212	0.209	0.033	0.193	0.267	0.087
+(100, 50)	0.106	0.168	0.114	0.149	0.232	0.231
+(80, 40)	0.139	0.136	0.157	0.167	0.192	0.210
+(50, 25)	0.107	0.157	0.194	0.099	0.264	0.179
+(30, 15)	0.140	0.303	0.135	0.098	0.135	0.189
+(20, 10)	0.136	0.283	0.222	0.137	0.103	0.120
+(10, 5)	0.180	0.190	0.000	0.070	0.070	0.489 
+-->
+
+<!-- <script>
+    // On mouse-over, execute myFunction
+    function myFunction() {
+        document.getElementsByTagName("input")[0].click();
+    }
+</script> -->
+
+</body>
+</html>

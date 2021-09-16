@@ -1,0 +1,90 @@
+#wrapper{ 
+    margin:0 auto;
+    position:relative;
+    width:900px;
+    height:900px
+} 
+
+
+.introduction{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    position:absolute; 
+    width:1000px; 
+    height:200px; 
+    left: 10px; 
+}
+
+.parameters, .videos, .tables, .br, .attack, .keys{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+}
+/* position:relative是绝对定位关键，父级设置 */ 
+.parameters{
+    position:absolute; 
+    width:400px; 
+    height:400px; 
+    left: 10px; 
+    top:200px; 
+    background-color: yellow;     
+} 
+
+.videos{
+    position:absolute; 
+    width:400px; 
+    height:400px; 
+    left: 410px; 
+    top:200px; 
+    background-color: antiquewhite;
+} 
+
+.tables{
+    position:absolute; 
+    width:800px; 
+    height:400px; 
+    left: 10px; 
+    top:610px;
+    background-color: aqua;
+} 
+/* 三个小盒子使用position:relative同时设置宽度 高度 left right top bottom实现布局与准确定位 */
+
+.submitButton{
+    display: inline-block;
+}
+
+.hovered td {
+    background: #ddd;
+}
+
+
+.keys{
+    position:absolute; 
+    left: 50px; 
+    top:10px;
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    clear：both;
+}
+
+.attack{
+    position:absolute; 
+    left: 100px; 
+    top:10px;
+    width: 40px;
+    height: 40px;
+    background-color: yellow;
+    clear：both;
+}
+
+.br{
+    position:absolute; 
+    left: 200px; 
+    top:10px;
+    width: 150px;
+    height: 40px;
+    background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,0,100,1) 50%, rgba(255,0,200,1) 100%);
+}
